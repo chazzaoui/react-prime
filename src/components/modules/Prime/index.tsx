@@ -62,7 +62,6 @@ const Prime: React.FC = () => {
       <Container>
         <PrimeContent>
           <Text>{facts.loading ? '' : facts?.data}</Text>
-          <p>test</p>
           <div onClick={getFact} >
             <Lottie
               playingState={state ? 'playing' : 'stopped'}
