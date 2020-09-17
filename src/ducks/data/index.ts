@@ -5,13 +5,16 @@ import * as i from 'types';
 import { ActionType, action } from 'typesafe-actions';
 import { DataState } from './types';
 
+export interface FactData {
+  fact: string;
+  length: number;
+}
+
 export const dataActions = {
   load: () => action('data/GET'),
-  success: (data: string) => action('data/GET_SUCCESS', data),
+  success: (data: FactData) => action('data/GET_SUCCESS', data),
   failed: () => action('data/GET_FAILED'),
 } as const; // <-- Important if you don't want to explicitly type the return type of all actions
-
-export const GET_DATA = 'GET_DATA';
 
 const initialState: DataState = {
   data: undefined,
@@ -21,16 +24,16 @@ const initialState: DataState = {
 
 export const getFacts: any = () => {
   return (dispatch: any) => {
+    dispatch(dataActions.load());
     try {
       fetch('https://catfact.ninja/fact')
         .then((response) => response.json())
         .then((data) => {
-          dispatch(dataActions.success(data))
+          dispatch(dataActions.success(data.fact))
         });
     } catch (err) {
       console.log(err);
     };
-
   };
 };
 

@@ -18,11 +18,14 @@ const Prime: React.FC = () => {
   const getFact = () => {
     dispatch(getFacts())
   };
-  console.log(facts?.data?.fact, 'hello')
+  useEffect(() => {
+    getFact();
+  }, []);
+  console.log(facts?.data, 'hello')
   return (
     <>
       <PrimeContent>
-        <div>{facts?.data?.fact}</div>
+        <div>{facts.loading ? 'Aan het laden ...' : facts?.data}</div>
         <button onClick={getFact}>Get a cat fact!!</button>
       </PrimeContent>
     </>

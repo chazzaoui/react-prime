@@ -1,7 +1,12 @@
 import * as i from 'types';
 
+export interface FactData {
+  fact: string;
+  length: number;
+}
+
 export type DataState = {
-  data?: string;
+  data?: FactData;
   error: boolean;
   loading: boolean;
 };
