@@ -13,15 +13,17 @@ const PrimeContent = styled.section`
 
 const Prime: React.FC = () => {
   const dispatch = useDispatch();
+  const facts = useSelector((state) => state.data)
 
-  useEffect(() => {
-    dispatch(getFacts());
-  }, [getFacts]);
-
+  const getFact = () => {
+    dispatch(getFacts())
+  };
+  console.log(facts?.data?.fact, 'hello')
   return (
     <>
       <PrimeContent>
-        <div>test</div>
+        <div>{facts?.data?.fact}</div>
+        <button onClick={getFact}>Get a cat fact!!</button>
       </PrimeContent>
     </>
   );

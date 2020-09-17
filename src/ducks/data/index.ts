@@ -7,9 +7,11 @@ import { DataState } from './types';
 
 export const dataActions = {
   load: () => action('data/GET'),
-  success: (success: boolean) => action('data/GET_SUCCESS', success),
+  success: (data: string) => action('data/GET_SUCCESS', data),
   failed: () => action('data/GET_FAILED'),
 } as const; // <-- Important if you don't want to explicitly type the return type of all actions
+
+export const GET_DATA = 'GET_DATA';
 
 const initialState: DataState = {
   data: undefined,
@@ -23,7 +25,7 @@ export const getFacts: any = () => {
       fetch('https://catfact.ninja/fact')
         .then((response) => response.json())
         .then((data) => {
-          console.log('This is your data', data);
+          dispatch(dataActions.success(data))
         });
     } catch (err) {
       console.log(err);
@@ -58,10 +60,10 @@ export default (state = initialState, action: ActionType<typeof dataActions>): i
   }
 };
 
-export const getData: i.GetData['thunk'] = () => (dispatch) => {
-  dispatch(dataActions.load());
+// export const getData: i.GetData['thunk'] = () => (dispatch) => {
+//   dispatch(dataActions.load());
 
-  setTimeout(() => {
-    dispatch(dataActions.success(true));
-  }, 2000);
-};
+//   setTimeout(() => {
+//     dispatch(dataActions.success(true));
+//   }, 2000);
+// };
