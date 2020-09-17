@@ -17,6 +17,21 @@ const initialState: DataState = {
   loading: false,
 };
 
+export const getFacts: any = () => {
+  return (dispatch: any) => {
+    try {
+      fetch('https://catfact.ninja/fact')
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('This is your data', data);
+        });
+    } catch (err) {
+      console.log(err);
+    };
+
+  };
+};
+
 export default (state = initialState, action: ActionType<typeof dataActions>): i.DataState => {
   switch (action.type) {
     case 'data/GET':

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
+import { useDispatch, useSelector } from '../../../services/hooks';
+import { getFacts } from '../../../ducks/data/index';
 
 const PrimeContent = styled.section`
   text-align: center;
@@ -9,12 +11,20 @@ const PrimeContent = styled.section`
 `;
 
 
-const Prime: React.FC = () => (
-  <>
-    <PrimeContent>
-      <div>test</div>
-    </PrimeContent>
-  </>
-);
+const Prime: React.FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFacts());
+  }, [getFacts]);
+
+  return (
+    <>
+      <PrimeContent>
+        <div>test</div>
+      </PrimeContent>
+    </>
+  );
+};
 
 export default Prime;
