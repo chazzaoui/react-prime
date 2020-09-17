@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Lottie } from '@crello/react-lottie';
 
+import animation from 'public/2729-cat-paw.json'
 import { useDispatch, useSelector } from '../../../services/hooks';
 import { getFacts } from '../../../ducks/data/index';
 
@@ -34,21 +36,39 @@ font-family: merriweather
 
 
 const Prime: React.FC = () => {
+  const [state, setState] = useState<boolean>(false);
+  const defaultOptions = {
+    animationData: animation,
+  };
+
   const dispatch = useDispatch();
   const facts = useSelector((state) => state.data)
 
   const getFact = () => {
     dispatch(getFacts())
+    setState(true);
+    setTimeout(() => {
+      setState(false);
+    }, 2000);
   };
   // useEffect(() => {
   //   getFact();
   // }, []);
+
+
+
   return (
     <>
       <Container>
         <PrimeContent>
-          <Text>{facts.loading ? 'Aan het laden ...' : facts?.data}</Text>
-          <button onClick={getFact}>Get a cat fact!!</button>
+          <Text>{facts.loading ? '' : facts?.data}</Text>
+          <div onClick={getFact} >
+            <Lottie
+              playingState={state ? 'playing' : 'stopped'}
+              config={defaultOptions}
+              height={'140px'}
+              width={'140px'} />
+          </div>
         </PrimeContent>
       </Container>
     </>

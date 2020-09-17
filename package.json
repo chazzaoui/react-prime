@@ -43,12 +43,15 @@
     ]
   },
   "dependencies": {
+    "@crello/react-lottie": "0.0.9",
+    "@types/react-lottie": "^1.2.5",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "framer-motion": "^2.6.13",
     "lodash": "4.17.19",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-lottie": "^1.2.3",
     "react-redux": "^7.2.1",
     "react-router": "5.2.0",
     "react-router-dom": "^5.2.0",
