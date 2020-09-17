@@ -1,10 +1,18 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, } from 'styled-components';
+import merriweather from 'public/Merriweather-Regular.ttf'
 
 const globalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     min-height: 100%;
     height: 100%;
+  }
+
+  @font-face {
+    font-family: merriweather;
+    font-style: normal;
+    font-weight: 400;
+    src: url(${merriweather});
   }
 
   *,
